@@ -96,13 +96,17 @@ app.put("/listings/:id", async (req, res) => {
   let editedListing = req.body.listing;
 
   try {
-    let dbListing = await Listing.findByIdAndUpdate(id, {
-      title: editedListing.title,
-      description: editedListing.description,
-      price: editedListing.price,
-      country: editedListing.country,
-      location: editedListing.location,
-    });
+    let dbListing = await Listing.findByIdAndUpdate(
+      id,
+      {
+        title: editedListing.title,
+        description: editedListing.description,
+        price: editedListing.price,
+        country: editedListing.country,
+        location: editedListing.location,
+      },
+      { runValidators: true }
+    );
   } catch (err) {
     console.log(err);
   }
