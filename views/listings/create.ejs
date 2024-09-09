@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../public/style.css" />
+    <title>Wanderlust</title>
+  </head>
+  <body>
+    <form method="POST" action="http://localhost:8080/listings">
+      <div class="InputForm">
+        <label for="title">Enter Title:</label>
+        <input
+          type="text"
+          name="title"
+          placeholder="Enter Title"
+          id="title"
+        /><br /><br />
+        <label for="description">Enter Description:</label>
+        <input
+          name="description"
+          type="text"
+          placeholder="Enter Description"
+          id="description"
+         
+        >
+      </input>
+        <br /><br />
+        <label for="price">Enter Price:</label>
+        <input
+          type="number"
+          name="price"
+          id="price"
+          placeholder="Enter Price"
+        />
+        <br /><br />
+        <label for="location">Enter Location:</label>
+        <input
+          type="text"
+          id="location"
+          name="location"
+          placeholder="Enter Location"
+        />
+        <br /><br />
+        <label for="country">Enter Country:</label>
+        <input
+          type="text"
+          name="country"
+          placeholder="Enter Country"
+          id="country"
+        />
+        <br /><br />
+        <label for="imageLink">Enter Image Link:</label>
+        <input
+          type="text"
+          name="ImageLink"
+          id="imageLink"
+          placeholder="Enter Image Link"
+        />
+      </div>
+      <button>Submit</button>
+    </form>
+  </body>
+</html>
