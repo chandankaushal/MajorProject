@@ -78,6 +78,36 @@ app.post("/listings", async (req, res) => {
   res.redirect("/listings");
 });
 
+//Edit Route
+app.get("/listings/:id/edit", async (req, res) => {
+  let { id } = req.params;
+  try {
+    let foundListing = await Listing.findById(id);
+    res.render("listings/edit.ejs", { foundListing });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+//Update Route
+app.put("/listings/:id", async (req, res) => {
+  let { id } = req.params;
+
+  let editedListing = req.body.listing;
+
+  try {
+    let dbListing = await Listing.findByIdAndUpdate(id, {
+      title: editedListing.title,
+      description: editedListing.description,
+      price: editedListing.price,
+      country: editedListing.country,
+      location: editedListing.location,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
