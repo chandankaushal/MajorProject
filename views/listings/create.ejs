@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../../public/style.css" />
-    <title>Wanderlust</title>
-  </head>
+<% layout('/layouts/boilerplate.ejs') %>
   <body>
     <form method="POST" action="http://localhost:8080/listings">
       <div class="InputForm">
@@ -34,7 +27,7 @@
           placeholder="Enter Price"
         />
         <br /><br />
-        <label for="location">Enter Location:</label>
+        
         <input
           type="text"
           id="location"
@@ -61,4 +54,3 @@
       <button>Submit</button>
     </form>
   </body>
-</html>

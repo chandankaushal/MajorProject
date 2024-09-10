@@ -1,0 +1,45 @@
+<% layout('/layouts/boilerplate.ejs') %>
+<body>
+  <form
+    method="POST"
+    action="http://localhost:8080/listings/<%=foundListing._id%>?_method=PUT"
+  >
+    <label for="title">Enter Title:</label>
+    <input
+      type="text"
+      name="listing[title]"
+      id="title"
+      value="<%=foundListing.title%>"
+    /><br /><br />
+    <label for="description">Enter Description:</label>
+    <input
+      type="text"
+      name="listing[description]"
+      id=""
+      value="<%=foundListing.description%>"
+    /><br /><br />
+    <label for="price">Enter Price:</label>
+    <input
+      type="number"
+      name="listing[price]"
+      id="price"
+      value="<%=foundListing.price%>"
+    /><br /><br />
+    <label for="country">Enter Country:</label>
+    <input
+      type="text"
+      name="listing[country]"
+      id="country"
+      value="<%=foundListing.country%>"
+    /><br /><br />
+    <label for="location">Enter Location:</label>
+    <input
+      type="text"
+      name="listing[location]"
+      id="location"
+      value="<%=foundListing.location%>"
+    /><br /><br />
+    <button>Save Changes</button>
+  </form>
+  <br /><br />
+</body>
