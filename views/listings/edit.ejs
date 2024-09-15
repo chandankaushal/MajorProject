@@ -1,45 +1,85 @@
 <% layout('/layouts/boilerplate.ejs') %>
 <body>
-  <form
-    method="POST"
-    action="http://localhost:8080/listings/<%=foundListing._id%>?_method=PUT"
-  >
-    <label for="title">Enter Title:</label>
-    <input
-      type="text"
-      name="listing[title]"
-      id="title"
-      value="<%=foundListing.title%>"
-    /><br /><br />
-    <label for="description">Enter Description:</label>
-    <input
-      type="text"
-      name="listing[description]"
-      id=""
-      value="<%=foundListing.description%>"
-    /><br /><br />
-    <label for="price">Enter Price:</label>
-    <input
-      type="number"
-      name="listing[price]"
-      id="price"
-      value="<%=foundListing.price%>"
-    /><br /><br />
-    <label for="country">Enter Country:</label>
-    <input
-      type="text"
-      name="listing[country]"
-      id="country"
-      value="<%=foundListing.country%>"
-    /><br /><br />
-    <label for="location">Enter Location:</label>
-    <input
-      type="text"
-      name="listing[location]"
-      id="location"
-      value="<%=foundListing.location%>"
-    /><br /><br />
-    <button>Save Changes</button>
-  </form>
-  <br /><br />
+  <div class="row">
+    <div class="col-8 offset-2">
+      <br />
+      <h2>Edit Listing</h2>
+      <br />
+      <form
+        method="POST"
+        action="http://localhost:8080/listings/<%=foundListing._id%>?_method=PUT"
+      >
+        <div class="mb-3">
+          <label class="form-label" for="title">Enter Title:</label>
+          <input
+            class="form-control"
+            type="text"
+            name="listing[title]"
+            id="title"
+            value="<%=foundListing.title%>"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="description">Enter Description:</label>
+          <textarea
+            class="form-control"
+            type="text"
+            name="listing[description]"
+            id="<%=foundListing.description%>"
+          >
+<%=foundListing.description%>
+</textarea
+          >
+        </div>
+        <div class="row">
+          <div class="mb-3 col-6">
+            <label class="form-label" for="price">Enter Price:</label>
+            <input
+              class="form-control"
+              type="number"
+              name="listing[price]"
+              id="price"
+              value="<%=foundListing.price%>"
+            />
+          </div>
+
+          <div class="mb-3 col-6">
+            <label class="form-label" for="country">Enter Country:</label>
+            <input
+              class="form-control"
+              type="text"
+              name="listing[country]"
+              id="country"
+              value="<%=foundListing.country%>"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="location">Enter Location:</label>
+          <input
+            class="form-control"
+            type="text"
+            name="listing[location]"
+            id="location"
+            value="<%=foundListing.location%>"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="link">Enter link:</label>
+          <input
+            class="form-control"
+            type="text"
+            name="listing[image.url]"
+            id="link"
+            value="<%=foundListing.image.url%>"
+          />
+        </div>
+
+        <button class="btn btn-dark edit-btn">Save Changes</button>
+      </form>
+    </div>
+  </div>
 </body>

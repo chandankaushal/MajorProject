@@ -1,19 +1,40 @@
 <% layout('/layouts/boilerplate.ejs') -%>
-<body>
-  <ul>
-    <li><%=listing.title%></li>
-    <li><%=listing.description%></li>
-    <li>&dollar;<%= listing.price.toLocaleString("en-US")%></li>
-    <li><%=listing.location%></li>
-    <li><%=listing.country%></li>
-  </ul>
-  <a href="http://localhost:8080/listings/<%=listing._id%>/edit"
-    >Edit this Listing</a
-  >
-  <form
-    method="POST"
-    action="http://localhost:8080/listings/<%=listing._id%>?_method=DELETE"
-  >
-    <button>Delete this Listing</button>
-  </form>
-</body>
+<div class="row mt-3">
+  <div class="col-8 offset-2">
+    <h2>Listing Details</h2>
+  </div>
+  <div class="card col-6 offset-2">
+    <img
+      class="card-img-top show-img"
+      src="<%=listing.image.url%>"
+      alt="Listing Image"
+    />
+    <div class="card-body">
+      <p class="card-text">
+        <b><%=listing.title%></b><br />
+        <%=listing.description%> <br />
+        <b> &dollar;<%= listing.price.toLocaleString("en-US")%></b><br />
+        <%=listing.location%>, <%=listing.country%>
+      </p>
+    </div>
+    <div class="buttons mt-2">
+      <div class="edit-btn-div">
+        <a
+          href="http://localhost:8080/listings/<%=listing._id%>/edit"
+          class="btn edit-btn"
+        >
+          Edit
+        </a>
+      </div>
+
+      <div class="delete-btn-div">
+        <form
+          method="POST"
+          action="http://localhost:8080/listings/<%=listing._id%>?_method=DELETE"
+        >
+          <button class="btn delete-btn">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

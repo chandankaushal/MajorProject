@@ -4,13 +4,29 @@
   <!-- <form method="GET" action="listings/new">
     <button>Create New Form</button>
   </form> -->
-  <ul>
+
+  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
     <%for(let listing of allListings) {%>
-    <li>
-      <a href="http://localhost:8080/listings/<%=listing._id%>"
-        ><%=listing.title%></a
-      >
-      <%}%>
-    </li>
-  </ul>
+    
+      <div class="card col">
+        <a href="/listings/<%=listing._id%>" class="card-anchor">
+        <img
+          class="card-img-top show-img"
+          src="<%=listing.image.url%>"
+          alt="listingImage"
+          style="height: 20rem"
+        />
+        <!-- <div class="card-img-overlay"></div> -->
+        <div class="card-body">
+          <p class="card-text">
+            <b> <%=listing.title%></b> <br />
+            &dollar;<%= listing.price.toLocaleString("en-US")%>
+          </p>
+        </a>
+        </div>
+      </div>
+   
+
+    <%}%>
+  </div>
 </body>
