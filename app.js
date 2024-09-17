@@ -33,7 +33,7 @@ async function main() {
 
 //Root
 app.get("/", (req, res) => {
-  res.redirect("/listings");
+  res.render("home.ejs");
 });
 
 //Index Route
@@ -70,7 +70,8 @@ app.post(
 
   wrapAsync(async (req, res, next) => {
     if (!req.body.listing) {
-      throw new ExpressError(404, "Page not found");
+      // If req body is empty
+      throw new ExpressError(404, "Please enter valid details");
     }
 
     const newListing = new Listing(req.body.listing);
@@ -95,6 +96,11 @@ app.get(
 app.put(
   "/listings/:id",
   wrapAsync(async (req, res) => {
+    if (!req.body.listing) {
+      // If req body is empty
+      throw new ExpressError(404, "Page not found");
+    }
+
     let { id } = req.params;
 
     let editedListing = req.body.listing;
@@ -127,7 +133,7 @@ app.all("*", (req, res, next) => {
 
 app.use((err, req, res, next) => {
   let { statusCode = 500, message = "Something Went Wrong" } = err;
-  res.status(statusCode).send(message);
+  res.status(statusCode).render("error.ejs", { err });
   console.log(statusCode, message);
 });
 

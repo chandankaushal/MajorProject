@@ -129,3 +129,6 @@
 .delete-btn:hover {
   opacity: 0.8;
 }
+.viewButton {
+  margin-left: 10rem;
+}
