@@ -5,7 +5,12 @@
       <br />
       <h2>Create a New Listing</h2>
       <br />
-      <form method="POST" action="http://localhost:8080/listings">
+      <form
+        method="POST"
+        action="http://localhost:8080/listings"
+        class="needs-validation"
+        novalidate
+      >
         <div class="InputForm">
           <div class="mb-3">
             <label for="title" class="form-label">Enter Title:</label>
@@ -15,8 +20,12 @@
               name="title"
               placeholder="Add a catchy Title"
               id="title"
+              required
             />
+            <div class="valid-feedback">Looks Good!</div>
+            <div class="invalid-feedback">Please Enter a Title</div>
           </div>
+
           <div class="mb-3">
             <label for="description" class="form-label"
               >Enter Description:</label
@@ -26,8 +35,10 @@
               placeholder="Describle your place"
               id="description"
               class="form-control"
-            >
-            </textarea>
+              required
+            ></textarea>
+            <div class="valid-feedback">Looks Good!</div>
+            <div class="invalid-feedback">Please Enter a Description</div>
           </div>
           <div class="mb-3 col-5">
             <label for="price" class="form-label">Enter Price:</label>
@@ -37,7 +48,10 @@
               id="price"
               placeholder="Enter Price per night"
               class="form-control"
+              required
             />
+            <div class="valid-feedback">Looks Good!</div>
+            <div class="invalid-feedback">Please Enter a Price</div>
           </div>
           <div class="row">
             <div class="mb-3 col-6">
@@ -58,7 +72,10 @@
                 placeholder="Country"
                 id="country"
                 class="form-control"
+                required
               />
+              <div class="valid-feedback">Looks Good!</div>
+              <div class="invalid-feedback">Please Enter a Country</div>
             </div>
           </div>
           <div class="mb-3">
