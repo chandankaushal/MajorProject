@@ -8,6 +8,8 @@
       <form
         method="POST"
         action="http://localhost:8080/listings/<%=foundListing._id%>?_method=PUT"
+        class="needs-validation"
+        novalidate
       >
         <div class="mb-3">
           <label class="form-label" for="title">Enter Title:</label>
@@ -17,7 +19,10 @@
             name="listing[title]"
             id="title"
             value="<%=foundListing.title%>"
+            required
           />
+          <div class="valid-feedback">Looks Good!</div>
+          <div class="invalid-feedback">Please Enter a Title</div>
         </div>
 
         <div class="mb-3">
@@ -27,10 +32,12 @@
             type="text"
             name="listing[description]"
             id="<%=foundListing.description%>"
+            required
           >
-<%=foundListing.description%>
-</textarea
+<%=foundListing.description%></textarea
           >
+          <div class="valid-feedback">Looks Good!</div>
+          <div class="invalid-feedback">Please Enter a Description</div>
         </div>
         <div class="row">
           <div class="mb-3 col-6">
@@ -41,7 +48,10 @@
               name="listing[price]"
               id="price"
               value="<%=foundListing.price%>"
+              required
             />
+            <div class="valid-feedback">Looks Good!</div>
+            <div class="invalid-feedback">Please Enter a Price</div>
           </div>
 
           <div class="mb-3 col-6">
@@ -52,7 +62,10 @@
               name="listing[country]"
               id="country"
               value="<%=foundListing.country%>"
+              required
             />
+            <div class="valid-feedback">Looks Good!</div>
+            <div class="invalid-feedback">Please Enter a Country</div>
           </div>
         </div>
 
@@ -64,18 +77,24 @@
             name="listing[location]"
             id="location"
             value="<%=foundListing.location%>"
+            required
           />
+          <div class="valid-feedback">Looks Good!</div>
+          <div class="invalid-feedback">Please Enter a Location</div>
         </div>
 
         <div class="mb-3">
           <label class="form-label" for="link">Enter link:</label>
           <input
             class="form-control"
-            type="text"
+            type="url"
             name="listing[image.url]"
             id="link"
             value="<%=foundListing.image.url%>"
+            required
           />
+          <div class="valid-feedback">Looks Good!</div>
+          <div class="invalid-feedback">Please Enter a Link</div>
         </div>
 
         <button class="btn btn-dark edit-btn">Save Changes</button>
