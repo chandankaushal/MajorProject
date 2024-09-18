@@ -8,7 +8,7 @@ const listingSchema = Joi.object({
       // Use Joi.object() here
       filename: Joi.string().default("noName"), // Default value for filename
       url: Joi.string().uri(),
-    }), // Ensure image is a required object
+    }),
     price: Joi.number().positive().required(),
     location: Joi.string().required(),
     country: Joi.string().required(),
