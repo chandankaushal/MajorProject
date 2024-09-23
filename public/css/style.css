@@ -54,7 +54,7 @@
 
 /* Cards */
 
-.card {
+.listingCard {
   border: none !important;
   margin-bottom: 2rem;
 }
@@ -131,4 +131,6 @@
 }
 .viewButton {
   margin-left: 10rem;
+}
+.form-btn {
 }
