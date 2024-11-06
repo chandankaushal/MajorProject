@@ -5,7 +5,6 @@ const Review = require("../models/review.js");
 const reviewSchema = require("../reviewSchema.js"); // Joi Schema to validate reviews
 const ExpressError = require("../utils/ExpressError.js"); // Custom Error
 const Listing = require("../models/listing.js");
-
 const validateReview = (req, res, next) => {
   let { error } = reviewSchema.validate(req.body);
   if (error) {
@@ -35,7 +34,7 @@ router.post(
     result.reviews.push(newReview); //Pushing newReview
     await newReview.save(); //Saving in Review DB
     await result.save(); //Saving Listing with Review in DB
-
+    req.flash("success", "Review Added Successfully");
     res.redirect(`/listings/${id}`);
   })
 );
@@ -49,12 +48,13 @@ router.delete(
 
     let result = await Review.findByIdAndDelete(reviewId);
 
+
     let listingResult = await Listing.findById(id);
 
     let pullResult = await Listing.findByIdAndUpdate(id, {
       $pull: { reviews: reviewId }, //$pull will delete the array items that match the condition
     });
-
+    req.flash("success", "Review Deleted Successfully");
     res.redirect(`/listings/${id}`);
   })
 );
