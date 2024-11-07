@@ -4,6 +4,7 @@ const wrapAsync = require("../utils/wrapAsync");
 const Listing = require("../models/listing.js");
 const ExpressError = require("../utils/ExpressError.js"); // Custom Error
 const listingSchema = require("../schema.js"); //validateListingSchema Joi
+const { isLoggedIn } = require("../middleware.js"); // Verify if the user is logged in
 
 const validateListing = (req, res, next) => {
   //Validate Listing using Joi (schema.js) using this as middleWare
@@ -28,7 +29,7 @@ router.get(
 );
 //Create Route
 
-router.get("/new", (req, res) => {
+router.get("/new", isLoggedIn, (req, res) => {
   // Create Listing Form
   res.render("listings/create.ejs");
 });
@@ -39,7 +40,7 @@ router.get(
   wrapAsync(async (req, res) => {
     const listingID = req.params.id;
     const listing = await Listing.findById(listingID).populate("reviews");
-    if(!listing){
+    if (!listing) {
       req.flash("error", "Listing Not Found");
       res.redirect("/listings");
     }
@@ -65,10 +66,13 @@ router.post(
 //Edit Route
 router.get(
   "/:id/edit",
+  isLoggedIn,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
+    console.log("In Edit Function");
     let foundListing = await Listing.findById(id);
-    if(!foundListing){
+    console.log("Listing Found!");
+    if (!foundListing) {
       req.flash("error", "Listing Not Found");
       res.redirect("/listings");
     }
@@ -100,6 +104,7 @@ router.put(
 
 router.delete(
   "/:id",
+  isLoggedIn,
   wrapAsync(async (req, res) => {
     const { id } = req.params;
     await Listing.findByIdAndDelete(id);
