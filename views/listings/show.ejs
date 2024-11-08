@@ -18,7 +18,7 @@
         <p><%=listing.country%></p>
       </div>
     </div>
-    <% if (currentUser._id.equals(listing.owner._id)) { %>
+    <% if (currentUser && currentUser._id.equals(listing.owner._id)) { %>
     <div class="buttons mt-2">
       <div class="edit-btn-div">
         <a

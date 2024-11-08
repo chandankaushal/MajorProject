@@ -2,18 +2,8 @@ const express = require("express");
 const router = express.Router({ mergeParams: true });
 const wrapAsync = require("../utils/wrapAsync");
 const Review = require("../models/review.js");
-const reviewSchema = require("../reviewSchema.js"); // Joi Schema to validate reviews
-const ExpressError = require("../utils/ExpressError.js"); // Custom Error
 const Listing = require("../models/listing.js");
-const validateReview = (req, res, next) => {
-  let { error } = reviewSchema.validate(req.body);
-  if (error) {
-    let errMsg = error.details.map((el) => el.message).join(","); // Error.details is an array. Extracting message from it and creating new array and then joining that array separated by , to create new string
-    throw new ExpressError(400, errMsg);
-  } else {
-    next();
-  }
-};
+const { validateReview } = require("../middleware.js");
 
 //Review Route
 
@@ -47,7 +37,6 @@ router.delete(
     let { id, reviewId } = req.params;
 
     let result = await Review.findByIdAndDelete(reviewId);
-
 
     let listingResult = await Listing.findById(id);
 

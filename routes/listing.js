@@ -2,23 +2,7 @@ const express = require("express");
 const router = express.Router();
 const wrapAsync = require("../utils/wrapAsync");
 const Listing = require("../models/listing.js");
-const ExpressError = require("../utils/ExpressError.js"); // Custom Error
-const listingSchema = require("../schema.js"); //validateListingSchema Joi
-const { isLoggedIn } = require("../middleware.js"); // Verify if the user is logged in
-
-const validateListing = (req, res, next) => {
-  //Validate Listing using Joi (schema.js) using this as middleWare
-  let { error } = listingSchema.validate(req.body);
-
-  if (error) {
-    let errMsg = error.details.map((e) => e.message).join(","); // Error.details is an array. Extracting message from it and creating new array and then joining that array separated by , to create new string
-    throw new ExpressError(400, errMsg);
-  } else {
-    next();
-  }
-};
-
-const checkOwner = (obj, req, res) => {};
+const { isLoggedIn, isOwner, validateListing } = require("../middleware.js"); // Verify if the user is logged in
 
 //Index Route
 router.get(
@@ -57,6 +41,7 @@ router.get(
 router.post(
   // Create New Listing
   "/",
+  isLoggedIn,
   validateListing,
   wrapAsync(async (req, res, next) => {
     const newListing = new Listing(req.body.listing);
@@ -73,6 +58,7 @@ router.post(
 router.get(
   "/:id/edit",
   isLoggedIn,
+  isOwner,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
 
@@ -81,10 +67,7 @@ router.get(
       req.flash("error", "Listing Not Found");
       res.redirect("/listings");
     }
-    if (foundListing.owner != req.user._id) {
-      req.flash("error", "You are not the owner of this listing");
-      res.redirect("/listings");
-    }
+
     res.render("listings/edit.ejs", { foundListing });
   })
 );
@@ -92,6 +75,8 @@ router.get(
 //Update Route
 router.put(
   "/:id",
+  isLoggedIn,
+  isOwner,
   validateListing,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
@@ -114,6 +99,7 @@ router.put(
 router.delete(
   "/:id",
   isLoggedIn,
+  isOwner,
   wrapAsync(async (req, res) => {
     const { id } = req.params;
     await Listing.findByIdAndDelete(id);
