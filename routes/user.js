@@ -42,10 +42,10 @@ router.post(
   }
 );
 
-router.get("/logout", (req, res) => {
+router.get("/logout", (req, res, next) => {
   req.logout((err) => {
     if (err) {
-      console.log(err);
+      next(err);
     }
     req.flash("success", "You have been Logged out!");
     res.redirect("/listings");
