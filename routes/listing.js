@@ -69,9 +69,9 @@ router.get(
   isLoggedIn,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
-    console.log("In Edit Function");
+
     let foundListing = await Listing.findById(id);
-    console.log("Listing Found!");
+
     if (!foundListing) {
       req.flash("error", "Listing Not Found");
       res.redirect("/listings");
