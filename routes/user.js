@@ -36,7 +36,6 @@ router.post(
 );
 
 router.get("/login", (req, res) => {
-  console.log(`This is the GET login form${req.session.redirectUrl}`);
   res.render("user/login.ejs");
 });
 

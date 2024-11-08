@@ -18,6 +18,8 @@ const validateListing = (req, res, next) => {
   }
 };
 
+const checkOwner = (obj, req, res) => {};
+
 //Index Route
 router.get(
   //Show All Listings
@@ -39,7 +41,9 @@ router.get(
   "/:id",
   wrapAsync(async (req, res) => {
     const listingID = req.params.id;
-    const listing = await Listing.findById(listingID).populate("reviews");
+    const listing = await Listing.findById(listingID)
+      .populate("reviews")
+      .populate("owner");
     if (!listing) {
       req.flash("error", "Listing Not Found");
       res.redirect("/listings");
@@ -56,7 +60,9 @@ router.post(
   validateListing,
   wrapAsync(async (req, res, next) => {
     const newListing = new Listing(req.body.listing);
-
+    newListing.owner = req.user._id;
+    console.log("HELLO");
+    console.log(`This is the owner${newListing.owner}`);
     await newListing.save();
     req.flash("success", "Listing Added Successfully");
     res.redirect("/listings");
@@ -71,9 +77,12 @@ router.get(
     let { id } = req.params;
 
     let foundListing = await Listing.findById(id);
-
     if (!foundListing) {
       req.flash("error", "Listing Not Found");
+      res.redirect("/listings");
+    }
+    if (foundListing.owner != req.user._id) {
+      req.flash("error", "You are not the owner of this listing");
       res.redirect("/listings");
     }
     res.render("listings/edit.ejs", { foundListing });
