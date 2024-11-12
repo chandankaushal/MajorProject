@@ -40,6 +40,8 @@
     </div>
     <%}%>
   </div>
+
+  <% if (currentUser){%>
   <hr />
   <div class="review col-8 offset-3">
     <h4>Leave a review</h4>
@@ -78,6 +80,7 @@
         <button class="btn edit-btn mt-3">Submit</button>
       </form>
     </div>
+    <%}%>
     <hr />
     <h4>All Reviews</h4>
     <div class="row col-6">
@@ -85,10 +88,12 @@
 
       <div class="card col-5 ms-3 mb-3">
         <div class="card-body">
-          <h5 class="card-title">Review</h5>
+          <h5 class="card-title">@<%=review.author.username%></h5>
           <p class="card-text">Comment: <%=review.comment%></p>
           <p class="card-text">Rating: <%=review.rating%> stars</p>
         </div>
+
+        <%if(currentUser){%>
         <form
           class="mb-3 mt-2"
           method="POST"
@@ -96,6 +101,7 @@
         >
           <button class="btn btn-sm btn-dark">Delete</button>
         </form>
+        <%}%>
       </div>
 
       <%}%>
