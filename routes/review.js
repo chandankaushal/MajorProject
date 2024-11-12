@@ -20,8 +20,6 @@ router.post(
     let { id } = req.params; // Lising ID
     let thisUser = req.user._id;
 
-    console.log(thisUser);
-
     //Creating a new review
     let newReview = new Review({
       comment: comment,
@@ -42,6 +40,7 @@ router.post(
 
 router.delete(
   "/:reviewId",
+  isLoggedIn,
   isReviewOwner,
   wrapAsync(async (req, res) => {
     let { id, reviewId } = req.params;
