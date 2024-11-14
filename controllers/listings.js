@@ -7,10 +7,11 @@ module.exports.index = async (req, res) => {
 
 module.exports.renderNewForm = (req, res) => {
   // Create Listing Form
+
   res.render("listings/create.ejs");
 };
 
-module.exports.showAllListings = async (req, res) => {
+module.exports.showListinByID = async (req, res) => {
   const listingID = req.params.id;
   const listing = await Listing.findById(listingID)
     .populate({ path: "reviews", populate: { path: "author" } })
@@ -25,8 +26,6 @@ module.exports.showAllListings = async (req, res) => {
 module.exports.newListing = async (req, res, next) => {
   const newListing = new Listing(req.body.listing);
   newListing.owner = req.user._id;
-  console.log("HELLO");
-  console.log(`This is the owner${newListing.owner}`);
   await newListing.save();
   req.flash("success", "Listing Added Successfully");
   res.redirect("/listings");
