@@ -10,6 +10,7 @@
         action="http://localhost:8080/listings"
         class="needs-validation"
         novalidate
+        enctype="multipart/form-data"
       >
         <div class="InputForm">
           <div class="mb-3">
@@ -78,12 +79,11 @@
             </div>
           </div>
           <div class="mb-3">
-            <label for="imageLink" class="form-label">Enter Image Link:</label>
+            <label for="imageFile" class="form-label">Upload File:</label>
             <input
-              type="url"
-              name="listing[image][url]"
-              id="imageLink"
-              placeholder="Enter Image Link"
+              type="file"
+              name="listing[image][file]"
+              id="imageFile"
               class="form-control"
             />
           </div>

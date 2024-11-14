@@ -14,6 +14,8 @@ const port = 8080;
 const User = require("./models/user.js");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
 
 let sessionOptions = {
   secret: "keyboard cat",
