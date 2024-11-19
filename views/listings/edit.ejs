@@ -10,94 +10,110 @@
         action="http://localhost:8080/listings/<%=foundListing._id%>?_method=PUT"
         class="needs-validation"
         novalidate
+        enctype="multipart/form-data"
       >
-        <div class="mb-3">
-          <label class="form-label" for="title">Enter Title:</label>
-          <input
-            class="form-control"
-            type="text"
-            name="listing[title]"
-            id="title"
-            value="<%=foundListing.title%>"
-            required
+        <div class="card col-10 offset-0 listingCard">
+          <img
+            class="card-img-top show-img mb-2"
+            src="<%=foundListing.image.url%>"
+            alt="Listing Image"
           />
-          <div class="valid-feedback">Looks Good!</div>
-          <div class="invalid-feedback">Please Enter a Title</div>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="description">Enter Description:</label>
-          <textarea
+          <label for="newImage" class="form-label">Choose Image</label>
+          <input
+            type="file"
+            name="listing[image][file]"
+            id="newImage"
             class="form-control"
-            type="text"
-            name="listing[description]"
-            id="<%=foundListing.description%>"
-            required
-          >
-<%=foundListing.description%></textarea
-          >
-          <div class="valid-feedback">Looks Good!</div>
-          <div class="invalid-feedback">Please Enter a Description</div>
-        </div>
-        <div class="row">
-          <div class="mb-3 col-6">
-            <label class="form-label" for="price">Enter Price:</label>
-            <input
-              class="form-control"
-              type="number"
-              name="listing[price]"
-              id="price"
-              value="<%=foundListing.price%>"
-              required
-            />
-            <div class="valid-feedback">Looks Good!</div>
-            <div class="invalid-feedback">Please Enter a Price</div>
-          </div>
-
-          <div class="mb-3 col-6">
-            <label class="form-label" for="country">Enter Country:</label>
+          />
+          <div class="mb-3">
+            <label class="form-label" for="title">Enter Title:</label>
             <input
               class="form-control"
               type="text"
-              name="listing[country]"
-              id="country"
-              value="<%=foundListing.country%>"
+              name="listing[title]"
+              id="title"
+              value="<%=foundListing.title%>"
               required
             />
             <div class="valid-feedback">Looks Good!</div>
-            <div class="invalid-feedback">Please Enter a Country</div>
+            <div class="invalid-feedback">Please Enter a Title</div>
           </div>
-        </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="location">Enter Location:</label>
-          <input
-            class="form-control"
-            type="text"
-            name="listing[location]"
-            id="location"
-            value="<%=foundListing.location%>"
-            required
-          />
-          <div class="valid-feedback">Looks Good!</div>
-          <div class="invalid-feedback">Please Enter a Location</div>
-        </div>
+          <div class="mb-3">
+            <label class="form-label" for="description"
+              >Enter Description:</label
+            >
+            <textarea
+              class="form-control"
+              type="text"
+              name="listing[description]"
+              id="<%=foundListing.description%>"
+              required
+            >
+<%=foundListing.description%></textarea
+            >
+            <div class="valid-feedback">Looks Good!</div>
+            <div class="invalid-feedback">Please Enter a Description</div>
+          </div>
+          <div class="row">
+            <div class="mb-3 col-6">
+              <label class="form-label" for="price">Enter Price:</label>
+              <input
+                class="form-control"
+                type="number"
+                name="listing[price]"
+                id="price"
+                value="<%=foundListing.price%>"
+                required
+              />
+              <div class="valid-feedback">Looks Good!</div>
+              <div class="invalid-feedback">Please Enter a Price</div>
+            </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="link">Enter link:</label>
-          <input
-            class="form-control"
-            type="url"
-            name="listing[image.url]"
-            id="link"
-            value="<%=foundListing.image.url%>"
-            required
-          />
-          <div class="valid-feedback">Looks Good!</div>
-          <div class="invalid-feedback">Please Enter a Link</div>
-        </div>
+            <div class="mb-3 col-6">
+              <label class="form-label" for="country">Enter Country:</label>
+              <input
+                class="form-control"
+                type="text"
+                name="listing[country]"
+                id="country"
+                value="<%=foundListing.country%>"
+                required
+              />
+              <div class="valid-feedback">Looks Good!</div>
+              <div class="invalid-feedback">Please Enter a Country</div>
+            </div>
+          </div>
 
-        <button class="btn btn-dark edit-btn">Save Changes</button>
+          <div class="mb-3">
+            <label class="form-label" for="location">Enter Location:</label>
+            <input
+              class="form-control"
+              type="text"
+              name="listing[location]"
+              id="location"
+              value="<%=foundListing.location%>"
+              required
+            />
+            <div class="valid-feedback">Looks Good!</div>
+            <div class="invalid-feedback">Please Enter a Location</div>
+          </div>
+
+          <!-- <div class="mb-3">
+            <label class="form-label" for="link">Enter link:</label>
+            <input
+              class="form-control"
+              type="url"
+              name="listing[image][url]"
+              id="link"
+              value="<%=foundListing.image.url%>"
+              required
+            />
+            <div class="valid-feedback">Looks Good!</div>
+            <div class="invalid-feedback">Please Enter a Link</div>
+          </div> -->
+        </div>
+        <button class="btn btn-dark edit-btn mb-3">Save Changes</button>
       </form>
     </div>
   </div>

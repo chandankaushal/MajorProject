@@ -37,8 +37,6 @@ module.exports.newListing = async (req, res, next) => {
 
 module.exports.renderEditForm = async (req, res) => {
   let { id } = req.params;
-  console.log(req.body);
-  console.log(`This is request params ${id}`);
 
   let foundListing = await Listing.findById(id);
   if (!foundListing) {
@@ -51,10 +49,16 @@ module.exports.renderEditForm = async (req, res) => {
 
 module.exports.updateListing = async (req, res) => {
   let { id } = req.params;
-
   let editedListing = req.body.listing;
-
-  let dbListing = await Listing.findByIdAndUpdate(
+  if (req.file) {
+    if (!editedListing.image) {
+      editedListing.image = {}; // Initialize as an empty object if undefined
+    }
+    editedListing.image.url = req.file.path;
+    editedListing.image.filename = req.file.filename;
+    // Change Listing Image URL and Filename in DB.
+  }
+  await Listing.findByIdAndUpdate(
     //Update DB listing with edited Listing
     id,
     { ...editedListing },

@@ -28,8 +28,10 @@ router
     //Update Listing
     isLoggedIn,
     isOwner,
-    validateListing,
-    wrapAsync(listingController.updateListing)
+    //validateListing,
+    // wrapAsync(listingController.updateListing)
+    upload.single("listing[image][file]"),
+    listingController.updateListing
   )
   .delete(isLoggedIn, isOwner, wrapAsync(listingController.deleteListing)); //Delete Lisitng
 
