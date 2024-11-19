@@ -32,7 +32,6 @@ module.exports.isOwner = async (req, res, next) => {
 
 module.exports.validateListing = (req, res, next) => {
   //Validate Listing using Joi (schema.js) using this as middleWare
-  console.log(req.body);
   let { error } = listingSchema.validate(req.body);
 
   if (error) {

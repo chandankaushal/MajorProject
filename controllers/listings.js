@@ -9,6 +9,7 @@ module.exports.index = async (req, res) => {
 
 module.exports.renderNewForm = (req, res) => {
   // Create Listing Form
+  // console.log(req.body);
   res.render("listings/create.ejs");
 };
 
@@ -36,6 +37,8 @@ module.exports.newListing = async (req, res, next) => {
 
 module.exports.renderEditForm = async (req, res) => {
   let { id } = req.params;
+  console.log(req.body);
+  console.log(`This is request params ${id}`);
 
   let foundListing = await Listing.findById(id);
   if (!foundListing) {
