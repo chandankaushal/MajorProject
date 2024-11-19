@@ -7,7 +7,7 @@
       <br />
       <form
         method="POST"
-        action="http://localhost:8080/listings"
+        action="/listings"
         class="needs-validation"
         novalidate
         enctype="multipart/form-data"
@@ -79,17 +79,19 @@
             </div>
           </div>
           <div class="mb-3">
-            <label for="imageFile" class="form-label">Upload File:</label>
+            <label for="listing[image][file]" class="form-label"
+              >Upload File:</label
+            >
             <input
               type="file"
               name="listing[image][file]"
-              id="imageFile"
+              id="listing[image][file]"
               class="form-control"
             />
           </div>
-        </div>
 
-        <button class="btn btn-dark add-btn mt-3">Submit</button> <br /><br />
+          <button class="btn btn-dark add-btn mt-3">Submit</button> <br /><br />
+        </div>
       </form>
     </div>
   </div>

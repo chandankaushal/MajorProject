@@ -1,4 +1,6 @@
 const Listing = require("../models/listing");
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
 
 module.exports.index = async (req, res) => {
   const allListings = await Listing.find({});
@@ -7,7 +9,6 @@ module.exports.index = async (req, res) => {
 
 module.exports.renderNewForm = (req, res) => {
   // Create Listing Form
-
   res.render("listings/create.ejs");
 };
 
@@ -26,6 +27,8 @@ module.exports.showListinByID = async (req, res) => {
 module.exports.newListing = async (req, res, next) => {
   const newListing = new Listing(req.body.listing);
   newListing.owner = req.user._id;
+  newListing.image.url = req.file.path;
+  newListing.image.filename = req.file.filename;
   await newListing.save();
   req.flash("success", "Listing Added Successfully");
   res.redirect("/listings");
