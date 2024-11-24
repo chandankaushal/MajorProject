@@ -22,7 +22,7 @@ const checkCloudinaryAuth = async (req, res, next) => {
     console.log("Cloudinary authentication successful.");
     next();
   } catch (error) {
-    console.error("Cloudinary authentication failed:", error.message);
+    console.error("Cloudinary authentication failed");
     next(new ExpressError(500, "Please check your Cloudinary Config"));
   }
 };
