@@ -17,7 +17,7 @@ async function main() {
 const initDB = async () => {
   await Listing.deleteMany({});
   let newData = initData.data.map((el) => {
-    return { ...el, owner: "672de98d45eac60dd05fee95" }; //Adding Owner
+    return { ...el, owner: "6743aa80f6ab0544ffdb7698" }; //Adding Owner
   });
   await Listing.insertMany(newData); //Inserting New Data with Owner
   console.log("New Data with Owner was Inserted");
