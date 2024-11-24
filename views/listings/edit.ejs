@@ -5,6 +5,14 @@
       <br />
       <h2>Edit Listing</h2>
       <br />
+      <div class="card col-10 offset-0 listingCard">
+        <label for="OriginalImage" class="form-label">Current Image</label>
+        <img
+          class="card-img-top show-img mb-2"
+          src="<%=compressedImageURL%>"
+          alt="Listing Image"
+          id="OriginalImage"
+        />
       <form
         method="POST"
         action="http://localhost:8080/listings/<%=foundListing._id%>?_method=PUT"
@@ -12,13 +20,7 @@
         novalidate
         enctype="multipart/form-data"
       >
-        <div class="card col-10 offset-0 listingCard">
-          <img
-            class="card-img-top show-img mb-2"
-            src="<%=foundListing.image.url%>"
-            alt="Listing Image"
-          />
-          <label for="newImage" class="form-label">Choose Image</label>
+          <label for="newImage" class="form-label">Change Image</label>
           <input
             type="file"
             name="listing[image][file]"

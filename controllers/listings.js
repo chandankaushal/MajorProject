@@ -25,11 +25,12 @@ module.exports.showListinByID = async (req, res) => {
   res.render("listings/show.ejs", { listing });
 };
 
-module.exports.newListing = async (req, res, next) => {
+module.exports.newListing = async (req, res) => {
   const newListing = new Listing(req.body.listing);
   newListing.owner = req.user._id;
   newListing.image.url = req.file.path;
   newListing.image.filename = req.file.filename;
+  console.log("This is the new Listing", newListing);
   await newListing.save();
   req.flash("success", "Listing Added Successfully");
   res.redirect("/listings");
@@ -44,7 +45,14 @@ module.exports.renderEditForm = async (req, res) => {
     res.redirect("/listings");
   }
 
-  res.render("listings/edit.ejs", { foundListing });
+  let originalURL = foundListing.image.url;
+  let compressedImageURL = originalURL.replace(
+    //Compressing Image on Edit Screen so that we do not show the Original Quality
+    "/upload",
+    "/upload/h_200,w_200"
+  );
+
+  res.render("listings/edit.ejs", { foundListing, compressedImageURL });
 };
 
 module.exports.updateListing = async (req, res) => {

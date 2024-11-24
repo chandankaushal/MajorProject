@@ -6,6 +6,7 @@ const { isLoggedIn, isOwner, validateListing } = require("../middleware.js"); //
 const multer = require("multer");
 const { storage } = require("../cloudConfig.js");
 const upload = multer({ storage });
+const { checkCloudinaryAuth } = require("../cloudConfig.js"); //Check If Cloudinary is successfully Authenticated
 
 const listingController = require("../controllers/listings");
 
@@ -14,6 +15,7 @@ router
   .get(wrapAsync(listingController.index)) //Show All Listings
   .post(
     isLoggedIn,
+    checkCloudinaryAuth,
     upload.single("listing[image][file]"), //Uploading the File
     validateListing,
     wrapAsync(listingController.newListing)
@@ -28,10 +30,10 @@ router
     //Update Listing
     isLoggedIn,
     isOwner,
-    //validateListing,
-    // wrapAsync(listingController.updateListing)
+    checkCloudinaryAuth,
     upload.single("listing[image][file]"),
-    listingController.updateListing
+    validateListing,
+    wrapAsync(listingController.updateListing)
   )
   .delete(isLoggedIn, isOwner, wrapAsync(listingController.deleteListing)); //Delete Lisitng
 

@@ -1,5 +1,6 @@
 const cloudinary = require("cloudinary").v2;
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const ExpressError = require("./utils/ExpressError");
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
@@ -15,4 +16,15 @@ const storage = new CloudinaryStorage({
   },
 });
 
-module.exports = { cloudinary, storage };
+const checkCloudinaryAuth = async (req, res, next) => {
+  try {
+    await cloudinary.api.ping();
+    console.log("Cloudinary authentication successful.");
+    next();
+  } catch (error) {
+    console.error("Cloudinary authentication failed:", error.message);
+    next(new ExpressError(500, "Please check your Cloudinary Config"));
+  }
+};
+
+module.exports = { cloudinary, storage, checkCloudinaryAuth };
