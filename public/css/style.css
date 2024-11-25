@@ -134,3 +134,12 @@
 }
 .form-btn {
 }
+
+/* Map Styling */
+#map {
+  height: 400px;
+  width: 80vh;
+}
+.mapboxgl-popup {
+  max-width: 200px;
+}

@@ -1,4 +1,8 @@
 <% layout('/layouts/boilerplate.ejs') -%>
+<script>
+  let mapboxKey = "<%= process.env.MAPBOX_SECRET %>";
+  let coordinates = <%- JSON.stringify(listing.geocode.coordinates) %>;
+</script>
 <div class="row mt-3">
   <div class="col-8 offset-2">
     <h2><%=listing.title%></h2>
@@ -120,6 +124,7 @@
     </div>
     <%}%>
     <hr />
+    <% if(listing.reviews.length > 0) { %>
     <h4>All Reviews</h4>
     <div class="row col-6">
       <%for(review of listing.reviews){%>
@@ -146,5 +151,11 @@
 
       <%}%>
     </div>
+    <%}%>
+  </div>
+  <div class="mapDiv offset-2">
+    <h3>Where you'll be</h3>
+    <div id="map"></div>
   </div>
 </div>
+<script src="/map.js"></script>
