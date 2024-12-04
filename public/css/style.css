@@ -143,3 +143,30 @@
 .mapboxgl-popup {
   max-width: 200px;
 }
+
+/* Filters andn Taxes Buttom */
+#filters {
+  display: flex;
+  margin-top: 20px;
+}
+.filter {
+  text-align: center;
+  margin-right: 40px;
+  cursor: pointer;
+}
+.filter i {
+  font-size: 24px;
+}
+.filter p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+.filter:hover i {
+  color: #ff385c; /* Brighter Airbnb color */
+}
+.filter:hover p {
+  color: #ff385c;
+}
+.priceValue {
+  display: none;
+}

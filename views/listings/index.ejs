@@ -1,11 +1,42 @@
 <% layout('/layouts/boilerplate.ejs') -%>
-<body>
-  <h2>All Listings</h2>
-  <!-- <form method="GET" action="listings/new">
-    <button>Create New Form</button>
-  </form> -->
+<div id="filters" class="sticky-top">
+  <!-- Trending Filter -->
+  <div class="filter">
+    <i class="fa-solid fa-fire"></i>
+    <p>Trending</p>
+  </div>
+  <!-- Bedrooms Filter -->
+  <div class="filter">
+    <i class="fa-solid fa-bed"></i>
+    <p>Bedrooms</p>
+  </div>
+  <!-- Pets Allowed Filter -->
+  <div class="filter">
+    <i class="fa-solid fa-paw"></i>
+    <p>Pets Allowed</p>
+  </div>
+  <!-- Kitchen Filter -->
+  <div class="filter">
+    <i class="fa-solid fa-utensils"></i>
+    <p>Kitchen</p>
+  </div>
+  <!-- Wifi Filter -->
+  <div class="filter">
+    <i class="fa-solid fa-wifi"></i>
+    <p>Wifi</p>
+  </div>
+  <div class="tax-switch" id="tax-switch">
 
-  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+      <label class="form-check-label" for="flexSwitchCheckDefault">After Taxes</label>
+    </div>
+  </div>
+  
+</div>
+
+
+  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
     <%for(let listing of allListings) {%>
     
       <div class="card col listingCard">
@@ -18,15 +49,14 @@
         />
         <!-- <div class="card-img-overlay"></div> -->
         <div class="card-body">
-          <p class="card-text">
-            <b> <%=listing.title%></b> <br />
-            &dollar;<%= listing.price.toLocaleString("en-US")%>
-          </p>
+          <div class="card-text">
+            <b> <%=listing.title%></b> 
+            <p class="priceBeforeTax">&dollar;<%= listing.price.toLocaleString("en-US")%></p>
+            <span class="priceValue"><%=listing.price%></span>
+          </div>
         </a>
         </div>
       </div>
-   
-
     <%}%>
   </div>
-</body>
+<script src="/taxes.js"></script>
