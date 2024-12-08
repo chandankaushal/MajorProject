@@ -15,7 +15,7 @@
         />
       <form
         method="POST"
-        action="http://localhost:8080/listings/<%=foundListing._id%>?_method=PUT"
+        action="/listings/<%=foundListing._id%>?_method=PUT"
         class="needs-validation"
         novalidate
         enctype="multipart/form-data"
@@ -100,20 +100,6 @@
             <div class="valid-feedback">Looks Good!</div>
             <div class="invalid-feedback">Please Enter a Location</div>
           </div>
-
-          <!-- <div class="mb-3">
-            <label class="form-label" for="link">Enter link:</label>
-            <input
-              class="form-control"
-              type="url"
-              name="listing[image][url]"
-              id="link"
-              value="<%=foundListing.image.url%>"
-              required
-            />
-            <div class="valid-feedback">Looks Good!</div>
-            <div class="invalid-feedback">Please Enter a Link</div>
-          </div> -->
         </div>
         <button class="btn btn-dark edit-btn mb-3">Save Changes</button>
       </form>
