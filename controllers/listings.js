@@ -90,3 +90,18 @@ module.exports.deleteListing = async (req, res) => {
   req.flash("success", "Listing Deleted Successfully");
   res.redirect("/listings");
 };
+
+module.exports.searchListing = async (req, res) => {
+  let { query } = req.query;
+  const foundListings = await Listing.find({ location: `${query}` })
+    .populate({ path: "reviews", populate: { path: "author" } })
+    .populate("owner");
+
+  if (foundListings.length > 0) {
+    res.render("listings/show.ejs", { listing: foundListings[0] });
+  } else {
+    req.flash("error", "No results found");
+    //console.log(req.flash);
+    res.redirect("/listings");
+  }
+};

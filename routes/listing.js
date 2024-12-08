@@ -10,6 +10,8 @@ const { checkCloudinaryAuth } = require("../cloudConfig.js"); //Check If Cloudin
 
 const listingController = require("../controllers/listings");
 
+router.route("/search").get(wrapAsync(listingController.searchListing)); //Search Listing
+
 router
   .route("/")
   .get(wrapAsync(listingController.index)) //Show All Listings
