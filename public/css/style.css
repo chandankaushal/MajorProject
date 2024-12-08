@@ -170,3 +170,27 @@
 .priceValue {
   display: none;
 }
+.filters {
+  margin-top: 2px;
+}
+
+.tax-switch {
+  height: 3rem;
+  width: 10rem;
+}
+
+.tax-form {
+  margin-top: 10px;
+}
+
+.btn-search {
+  background-color: #ff385c !important;
+  color: white !important;
+  margin-left: 2rem !important;
+  width: 10rem;
+}
+.filters {
+  top: 79.5px !important;
+  padding: 10px;
+  background: white;
+}

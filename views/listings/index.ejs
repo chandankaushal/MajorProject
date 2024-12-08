@@ -1,42 +1,68 @@
 <% layout('/layouts/boilerplate.ejs') -%>
-<div id="filters" class="sticky-top">
-  <!-- Trending Filter -->
-  <div class="filter">
+<div id="filters" class="filters sticky-top" class="filters" style="margin-top: 2rem;">
+  <div class="row row-cols-lg-9 row-cols-md-9">
+    <!-- Trending Filter -->
+    <div class="filter col">
     <i class="fa-solid fa-fire"></i>
     <p>Trending</p>
-  </div>
-  <!-- Bedrooms Filter -->
-  <div class="filter">
+    </div>
+    <!-- Bedrooms Filter -->
+    <div class="filter col">
     <i class="fa-solid fa-bed"></i>
     <p>Bedrooms</p>
-  </div>
-  <!-- Pets Allowed Filter -->
-  <div class="filter">
+    </div>
+    <!-- Pets Allowed Filter -->
+    <div class="filter col">
     <i class="fa-solid fa-paw"></i>
     <p>Pets Allowed</p>
-  </div>
-  <!-- Kitchen Filter -->
-  <div class="filter">
+    </div>
+    <!-- Kitchen Filter -->
+    <div class="filter col">
     <i class="fa-solid fa-utensils"></i>
     <p>Kitchen</p>
-  </div>
-  <!-- Wifi Filter -->
-  <div class="filter">
+    </div>
+    <!-- Wifi Filter -->
+    <div class="filter col">
     <i class="fa-solid fa-wifi"></i>
     <p>Wifi</p>
-  </div>
-  <div class="tax-switch" id="tax-switch">
+    </div>
+    <!-- Parking Filter -->
+    <div class="filter col">
+    <i class="fa-solid fa-car"></i>
+    <p>Parking</p>
+    </div>
 
-    <div class="form-check form-switch">
+    <!-- Pool Filter -->
+    <div class="filter col">
+    <i class="fa-solid fa-swimmer"></i>
+    <p>Pool</p>
+    </div>
+
+    <!-- Gym Filter -->
+    <div class="filter col">
+    <i class="fa-solid fa-dumbbell"></i>
+    <p>Gym</p>
+    </div>
+
+    <!-- Balcony Filter -->
+    <div class="filter col">
+    <i class="fa-solid fa-house-chimney-window"></i>
+    <p>Balcony</p>
+    </div>
+  </div>
+  <div class="tax-switch sticky" id="tax-switch">
+
+    <div class="form-check form-switch tax-form">
       <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
       <label class="form-check-label" for="flexSwitchCheckDefault">After Taxes</label>
     </div>
   </div>
   
-</div>
 
+  
+  </div>  
 
-  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1 mt-3">
     <%for(let listing of allListings) {%>
     
       <div class="card col listingCard">
