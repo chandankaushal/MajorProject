@@ -10,16 +10,24 @@ const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
 const port = 8080;
 const User = require("./models/user.js");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
-const multer = require("multer");
-const upload = multer({ dest: "uploads/" });
+
+const store = MongoStore.create({
+  mongoUrl: process.env.CONNECTION_STRING,
+  crypto: {
+    secret: "mysupersecretcode",
+  },
+  touchAfter: 24 * 3600, //Update session info after 24H
+});
 
 let sessionOptions = {
-  secret: "keyboard cat",
+  store,
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
   cookie: {
@@ -28,6 +36,9 @@ let sessionOptions = {
     httpOnly: true,
   },
 };
+store.on("error", (err) => {
+  console.log("ERROR in MONGO STORE", err);
+});
 
 app.use(session(sessionOptions));
 app.use(flash());
@@ -54,7 +65,7 @@ app.use(express.json());
 app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 
-const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust"; // Connecting to Mongo DB
+const MONGO_URL = process.env.CONNECTION_STRING; // Connecting to Mongo DB
 main()
   .then(() => {
     console.log("Connection to Db successful");
