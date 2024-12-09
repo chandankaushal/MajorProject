@@ -82,7 +82,7 @@ app.use("/", userRouter);
 
 app.get("/", (req, res) => {
   //Home Page
-  res.render("home.ejs");
+  res.render("listings/home.ejs");
 });
 
 app.all("*", (req, res, next) => {
